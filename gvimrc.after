@@ -1,0 +1,10 @@
+syntax enable
+colorscheme Tomorrow-Night
+
+if has("gui_running")
+  set iminsert=2
+  set relativenumber
+endif
+
+set guifont=Monaco:h14
+set listchars=tab:▸\ ,eol:¬

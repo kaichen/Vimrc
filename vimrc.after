@@ -1,0 +1,66 @@
+set scrolloff=7
+
+noremap <C-Up> :bp<CR>
+noremap <C-Down> :bn<CR>
+noremap <C-j> <C-W>j<CR>
+noremap <C-k> <C-W>k<CR>
+noremap <C-h> <C-W>h<CR>
+noremap <C-l> <C-W>l<CR>
+
+" remove spaces in end of line
+nmap <C-\> :%s/\s\+$//g<CR>
+
+" Language and Encoding
+set fileformats=unix,dos,mac
+set encoding=UTF-8
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+
+au FileType javascript set tabstop=2 softtabstop=2 shiftwidth=2
+
+set statusline=%{fugitive#statusline()}%<%f%h%m%r%h%w%y\ %{strftime(\"%d/%m/%Y-%H:%M\")}%=\ col:%c%V\ lin:%l\,%L\ %P
+let g:statline_show_charcode=1
+let g:statline_fugitive=1
+let g:statline_syntastic=0
+let g:statline_rbenv=1
+let g:statline_filename_relative=0
+
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,*.rbc,*.class,*/.git/*,*/.hg/*,*/.svn/*,*/tmp/*,*/.sass-cache
+
+autocmd FileType cucumber compiler cucumber | setl makeprg=cucumber\ \"%:p\"
+autocmd FileType ruby
+      \ if expand('%') =~# '_test\.rb$' |
+      \   compiler rubyunit | setl makeprg=testrb\ \"%:p\" |
+      \ elseif expand('%') =~# '_spec\.rb$' |
+      \   compiler rspec | setl makeprg=rspec\ \"%:p\" |
+      \ else |
+      \   compiler ruby | setl makeprg=ruby\ -wc\ \"%:p\" |
+      \ endif
+autocmd User Bundler
+      \ if &makeprg !~# 'bundle' | setl makeprg^=bundle\ exec\  | endif
+
+" My functions
+
+set shell=/bin/bash
+set t_Co=256
+
+set exrc
+set secure
+
+set nonumber
+
+set sessionoptions-=curdir
+set sessionoptions+=sesdir
+
+ab eencod encoding: utf-8
+
+" easy typo here
+cmap W w
+cmap Q q
+
+" vimwiki
+nmap <Leader>wn <Plug>VimwikiNextLink
+nmap <Leader>wp <Plug>VimwikiPrevLink
+
+set bg=dark
+color solarized
