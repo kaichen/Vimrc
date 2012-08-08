@@ -4,6 +4,7 @@ colorscheme Tomorrow-Night
 if has("gui_running")
   set iminsert=2
   set relativenumber
+  "set transparency=5
 endif
 
 set guifont=Monaco:h14
